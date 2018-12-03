@@ -632,7 +632,7 @@ app.listen(3000);
 
 - Modificar la función que se llama al hacer click sobre un elemento del mapa para que llame a nuestro proxy. Esta función ejecutará una llamada ajax al proxy. Modificar la función *eachFeature* con el siguiente código
 
-```html hl_lines="69 70 71 72 73 74 75 76"
+```html hl_lines="69 70 71 72 73 74 75 76 77 78"
 <!DOCTYPE html>
 <html>
 <head>
@@ -704,9 +704,11 @@ app.listen(3000);
         var url = 'http://localhost:3000/acalast/'+f.properties.id;
         fetch(url)
         .then(function(response) {
-          console.log(response);
+          response.json().then(function(data){
+            popUp(l, data);
+          });
         })
-        .then(function(myJson) {
+        .catch(function(myJson) {
           console.log(myJson);
         });
       });
@@ -792,9 +794,11 @@ app.listen(3000);
         var url = 'http://localhost:3000/acalast/'+f.properties.id;
         fetch(url)
         .then(function(response) {
-          console.log(response);
+          response.json().then(function(data){
+            popUp(l, data);
+          });
         })
-        .then(function(myJson) {
+        .catch(function(myJson) {
           console.log(myJson);
         });
       });
@@ -891,10 +895,11 @@ app.listen(3000);
         var url = 'http://localhost:3000/acalast/'+f.properties.id;
         fetch(url)
         .then(function(response) {
-          console.log(response);
-          popUp(l, response);
+          response.json().then(function(data){
+            popUp(l, data);
+          });
         })
-        .then(function(myJson) {
+        .catch(function(myJson) {
           console.log(myJson);
         });
       });
