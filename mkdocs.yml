@@ -1,17 +1,26 @@
 site_name: Geoservicios para Smart Cities
+site_url: https://gss-mtig.github.io/gss-mtig-18-19/
+site_description: Geoservicios para Smart Cities.
+site_author: gss-mtig
 theme:
   name: 'material'
   language: 'es'
+  highlightjs: true
+
 markdown_extensions:
   - codehilite:
       linenums: True
   - admonition
   - pymdownx.magiclink
   - pymdownx.superfences
-repo_url: "https://github.com/sfggeogis/GSS-mtig-18-19"
-pages:
+repo_url: "https://github.com/gss-mtig/gss-mtig-18-19"
+
+nav:
 - Home: index.md
 - 1. Introducción a las Smart Cities: 1_introduccion_a_las_smart_cities.md
 - 2. API servicios Open data (CKAN y SOCRATA): 2_conceptos_y_servicios_open_data.md
 - 3. Conceptos Vector Tiles: 3_conceptos_vector_tiles.md
 - 4. Visualización con Kepler.gl: 4_visualizacion_kepler.md
+
+plugins:
+    - search
