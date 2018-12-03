@@ -28,6 +28,7 @@ nav:
 - 8. Ejemplo servicio bicing Barcelona: 8_ejemplo_servicio_bicing_bcn.md
 - 9. Ejemplo servicio bicing Barcelona (VectorTiles): 9_ejemplo_servicio_bicing_bcn_vt.md
 - 10. Consideraciones sobre servicios de Sensores: 10_consideraciones_servicios_realtime_sensores.md
+- 11. Ejemplo sensores port Barcelona: 11_ejemplo_sensores_port_bcn.md
 
 plugins:
     - search
