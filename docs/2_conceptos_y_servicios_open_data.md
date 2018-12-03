@@ -15,16 +15,16 @@ Para buscar en portales CKAN necesitamos saber la URL del portal , exemplo http:
 http://demo.ckan.org/api/3/action/resource_search?
 
   
-Descomprimiremos el archivo [downloads/utilizacion-servicio-opendata.zip](/files/utilizacion-servicio-opendata/utilizacion-servicio-opendata.zip) en nuestro espacio de trabajo.
+
 
 [Ver ejemplos online](ejemplos/utilizacion-servicio-opendata/index.html)   
  
 #### Creación de un buscador
 
   
-* Dentro del directorio **utilizacion-servicio-opendata** creamos un archivo con el nombre de *ckan.html*.
+* Dentro de nuestor espacio de trabaj creamos un archivo con el nombre de *ckan.html*.
 
-* Abrimos el archivo ckan.html con un editor de texto y copiamos el siguiente código.
+* Abrimos el archivo *ckan.html* con un editor de texto y copiamos el siguiente código.
 
 
 ```html
@@ -35,9 +35,9 @@ Descomprimiremos el archivo [downloads/utilizacion-servicio-opendata.zip](/files
     <title>
             Bàsic sample Resource Search API CKAN
     </title>
-    <link rel="stylesheet" href="javascripts/vendor/bootstrap/3.2.0/css/bootstrap.css" />
-    <script type="text/javascript" src="javascripts/vendor/jquery/1.7.1/jquery.js"></script>
-    <script type="text/javascript" src="javascripts/vendor/bootstrap/3.2.0/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
             #results {
                     width: 100%;
@@ -52,9 +52,9 @@ Descomprimiremos el archivo [downloads/utilizacion-servicio-opendata.zip](/files
 
 ```
 
-*  Abrimos el archivo ckan.html en el navegador.
+*  Abrimos el archivo *ckan.html* en el navegador.
 
-*  Añadimos dentro del tag *body* la maquetación HTML
+*  Añadimos dentro del tag  ```<body>``` la maquetación HTML
 
   
 ```html
@@ -64,13 +64,14 @@ Descomprimiremos el archivo [downloads/utilizacion-servicio-opendata.zip](/files
   <p> Package Search <br>
     <a target="_blank" href="http://docs.ckan.org/en/latest/api/">http://docs.ckan.org/en/latest/api/</a>
   </p>
-  <form>
+     <form id="_form">
     <div class="form-group">
       <label for="url_ckan">Url:</label>
 
       <select id="url_ckan">
         <option value="http://demo.ckan.org/api/3/action/resource_search?">ckan.org</option>
         <option value="http://old.datahub.io/api/3/action/resource_search?">old.datahub.io</option>
+				<!-- añadimos BCN opendata -->
       </select>
     </div>
     <div class="form-group">
@@ -98,20 +99,29 @@ Descomprimiremos el archivo [downloads/utilizacion-servicio-opendata.zip](/files
 ```
   
 
-* Abrimos el archivo ckan.html en el navegador.
-
+* Abrimos el archivo *ckan.html* en el navegador.
   
 
-* Añadimos justo encima de tag *body* el código en JavaScript.::
+* Añadimos just encima del tag ```</head>``` el siguiente código javascript
 
   
 ```javascript
 <script>
-  $.ajaxSetup({
+    $.ajaxSetup({
     cache: true
   });
   $(document).ready(function () {
     $('#bt_send').on('click', function () {
+      sendRequest();
+    });
+
+    $( "#_form" ).submit(function( event ) {
+      sendRequest();
+      event.preventDefault();
+    });
+
+
+    function sendRequest(){
       var data = {
         rows: $('#num_results_ckan').val(),
         query: $('#text_filter_ckan').val()
@@ -146,8 +156,7 @@ error: function (xhr) {
 }
 
 });
-
-})
+    }
 
 });
 </script>
@@ -155,22 +164,21 @@ error: function (xhr) {
 ```
   
 
-* Abrimos pàgina ckan.html y lanzamos búsquedas
+* Abrimos pàgina *ckan.html* y lanzamos búsquedas
 
   
 !!! note
-    **Ejercicio 1**: Añadir una o más URLs de otros portales de CKAN
-
+    **Ejercicio 1**: Añadir una o más URLs de otros portales de CKAN, por ejemplo OpenDataBCN
   
 !!! note
     **Ejercicio 2**: ¿Cómo haríamos para qué en los resultados apareciera la fecha de creación del dato?
 
-  
+!!! note
+    **Ejercicio 3**: Descargamos CSV accidentes
   
 
-Ejemplos API SOCRATA
+## Ejemplos API SOCRATA
 
-  
   
 
 El API de Socrata https://dev.socrata.com no ofrece diferetes niveles y métodos para poder buscar y filtra datasets.
@@ -179,45 +187,42 @@ El API de Socrata https://dev.socrata.com no ofrece diferetes niveles y métodos
 
 En este primer ejemplo utilizaremos la **Discovery API** https://socratadiscovery.docs.apiary.io/ para buscar datasets en cualquier portal de Socrata
 
-  
-  
 
-Descomprimiremos (ya hecho en ejercicio CKAN) el archivo **utilizacion-servicio-opendata.zip** en nuestro espacio de trabajo.
-
-  
-  
 
 Creación de un buscador
   
 
-* Dentro del directorio **utilizacion-servicio-opendata** creamos un archivo con el nombre de **socrata.html**.
+* Creamos un archivo con el nombre de **socrata.html**.
 
-* Abrimos el archivo socrata.html con un editor de texto y copiamos el siguiente código.::
+* Abrimos el archivo *socrata.html* con un editor de texto y copiamos el siguiente código.
 
   
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>
-Basic sample API Discovery SOCRATA
-</title>
-<link rel="stylesheet" href="javascripts/vendor/bootstrap/3.2.0/css/bootstrap.css" />
-<script type="text/javascript" src="javascripts/vendor/jquery/1.7.1/jquery.js"></script>
-<script type="text/javascript" src="javascripts/vendor/bootstrap/3.2.0/js/bootstrap.js"></script>
 
-<style>
-#results {
-  width: 100%;
-  background-color: #f2f2f2;
-  margin: 5px;
-}
-</style>
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Basic sample API Discovery SOCRATA
+    </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        #results {
+            width: 100%;
+            background-color: #f2f2f2;
+            margin: 5px;
+        }
+    </style>
 </head>
+
 <body>
 
 </body>
+
 </html>
 
 ```
@@ -227,7 +232,7 @@ Basic sample API Discovery SOCRATA
 
   
 
-* Añadimos dentro del tag **body** la maquetación HTML.::
+* Añadimos dentro del tag * ```<body>```* la maquetación HTML.
 
   
 ```html
@@ -281,7 +286,7 @@ Basic sample API Discovery SOCRATA
 
   
 
-* Añadimos justo encima de tag **/body** el código en JavaScript.::
+* Añadimos just encima del tag ```</head>``` el siguiente código javascript
 
   
 ```javascript
@@ -344,20 +349,19 @@ $(document).ready(function() {
 * Abrimos pàgina socrata.html y lanzamos búsquedas
 
   
-
-* **Ejercicio 1**: ¿Cómo filtraríamos para qué sólo enseñara "assets" de tipo mapa?
-
-  
-  
-
-Creación de un mapa para ver resultados de Socrata
+!!! note
+    **Ejercicio 1**: ¿Cómo filtraríamos para qué sólo enseñara "assets" de tipo "map", **only:map**?
 
 
   
+  
 
-* Dentro del directorio **utilizacion-servicio-opendata** creamos un archivo con el nombre de **socrata_mapa.html**.
+# Creación de un mapa para ver resultados de Socrata
 
-* Abrimos el archivo socrata_mapa.html con un editor de texto y copiamos el siguiente código.::
+
+* Creamos un archivo con el nombre de **socrata_mapa.html**.
+
+* Abrimos el archivo socrata_mapa.html con un editor de texto y copiamos el siguiente código.
 
   
 ```html
@@ -369,14 +373,14 @@ Creación de un mapa para ver resultados de Socrata
 	<title>
 		Basic Leaflet Map sample API Discovery SOCRATA
 	</title>
-	<link rel="stylesheet" href="javascripts/vendor/bootstrap/3.2.0/css/bootstrap.css" />
-	<link rel="stylesheet" href="javascripts/vendor/leaflet/0.7.7/leaflet.css" />
-	<script type="text/javascript" src="javascripts/vendor/jquery/1.7.1/jquery.js"></script>
-	<script type="text/javascript" src="javascripts/vendor/bootstrap/3.2.0/js/bootstrap.js"></script>
-	<script type="text/javascript" src="javascripts/vendor/leaflet/0.7.7/leaflet.js"></script>
-	<script type="text/javascript" src="javascripts/vendor/leaflet/0.7.7/leaflet.ajax.min.js"></script>
-	<script type="text/javascript" src="javascripts/vendor/leaflet/0.7.7/spin.js"></script>
-	<script type="text/javascript" src="javascripts/vendor/leaflet/0.7.7/leaflet.spin.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css" />
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.Spin/1.1.0/leaflet.spin.min.js"></script>
 	<style>
 		#results {
 			width: 100%;
@@ -393,12 +397,8 @@ Creación de un mapa para ver resultados de Socrata
 ```
   
 
-* Abrimos el archivo socrata_mapa.html en el navegador.
 
-  
-
-
-* Añadimos dentro del tag **body** la maquetación HTML.::
+* Añadimos dentro del tag  ```<body>``` la maquetación HTML
 
   
 ```html
@@ -461,11 +461,11 @@ US API Discovery
 ```
   
 
-* Abrimos el archivo socrata_mapa.html en el navegador.
+* Abrimos el archivo *socrata_mapa.html* en el navegador.
 
   
 
-* Añadimos justo encima de tag **body** el código en JavaScript.::
+* Añadimos just encima del tag ```</head>``` el siguiente código javascript
 
   
 ```javascript
@@ -685,7 +685,7 @@ $('#results').html("An error occured: " + xhr.status + " " + xhr.statusText);
 
 ```  
 
-*   Abrimos pàgina socrat_mapa.html y lanzamos búsquedas
+*  Abrimos pàgina socrat_mapa.html y lanzamos búsquedas
 
   
 !!! note
@@ -694,6 +694,10 @@ $('#results').html("An error occured: " + xhr.status + " " + xhr.statusText);
 !!! note
     **Ejercicio 2**: ¿Cambiamos colores y estilos de los puntos del mapa?
 
+
+!!! tip
+
+		Ejemplos creados [downloads/utilizacion-servicio-opendata.zip](/files/utilizacion-servicio-opendata/utilizacion-servicio-opendata.zip) en nuestro espacio de trabajo.
 
 
 
