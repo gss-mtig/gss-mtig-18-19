@@ -9,21 +9,28 @@ Es una aplicación basada en web GL de alto rendimiento y agnóstica de datos pa
 
 ## Ejercicio de visualización con Kepler.gl
 
-!!! Note Queremos ver dónde hay más accidentes
+!!! tip 
+    Queremos ver dónde hay más accidentes
 
 * Descargamos dataset CSV de [OpenData BCN](http://opendata-ajuntament.barcelona.cat/data/ca/dataset/accidents-tipus-gu-bcn)
 
-* Vamos a http://kepler.gl/#/demo --> Añadimos csv
+* Vamos a http://kepler.gl/#/demo 
+
+
+>  `Añadimos csv`
 
 ![alt text](img/step1-kepler.png "add dataset")
 
 
->
-    * Add Layer -->Type Hexbin
-    * Columns Latitud Longuitud
-    * Color Scale Qunatize
-    * Hexagon radius 0.1
-    * Coverage 0.75
+> `Add Layer: Type Hexbin`
+
+> `Columns: Latitud Longuitud`
+
+> `Color: Scale Quantize`
+
+> `Hexagon radius 0.1`
+
+> `Coverage 0.75`
 
 ![alt text](img/step2-kepler.png "add dataset")
 
