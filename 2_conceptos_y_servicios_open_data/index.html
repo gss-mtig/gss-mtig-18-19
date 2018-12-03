@@ -304,6 +304,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ejemplos-api-socrata" title="Ejemplos API SOCRATA" class="md-nav__link">
+    Ejemplos API SOCRATA
+  </a>
+  
+</li>
+      
       
       
       
@@ -379,6 +386,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#ejemplos-api-socrata" title="Ejemplos API SOCRATA" class="md-nav__link">
+    Ejemplos API SOCRATA
+  </a>
+  
+</li>
+      
       
       
       
@@ -404,15 +418,14 @@
 <p>En este ejemplo utilizaremos el método <a href="http://docs.ckan.org/en/latest/api/index.html#ckan.logic.action.get.resource_search">resource_search</a> para buscar datasets en cualquier portal de CKAN</p>
 <p>Para buscar en portales CKAN necesitamos saber la URL del portal , exemplo <a href="http://demo.ckan.org">http://demo.ckan.org</a> y añadir el path del método a utilizar <strong>/api/3/action/resource_search?</strong></p>
 <p><a href="http://demo.ckan.org/api/3/action/resource_search">http://demo.ckan.org/api/3/action/resource_search</a>?</p>
-<p>Descomprimiremos el archivo <a href="/files/utilizacion-servicio-opendata/utilizacion-servicio-opendata.zip">downloads/utilizacion-servicio-opendata.zip</a> en nuestro espacio de trabajo.</p>
 <p><a href="../ejemplos/utilizacion-servicio-opendata/">Ver ejemplos online</a>   </p>
 <h4 id="creacion-de-un-buscador">Creación de un buscador</h4>
 <ul>
 <li>
-<p>Dentro del directorio <strong>utilizacion-servicio-opendata</strong> creamos un archivo con el nombre de <em>ckan.html</em>.</p>
+<p>Dentro de nuestor espacio de trabaj creamos un archivo con el nombre de <em>ckan.html</em>.</p>
 </li>
 <li>
-<p>Abrimos el archivo ckan.html con un editor de texto y copiamos el siguiente código.</p>
+<p>Abrimos el archivo <em>ckan.html</em> con un editor de texto y copiamos el siguiente código.</p>
 </li>
 </ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -442,9 +455,9 @@
     <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>
             Bàsic sample Resource Search API CKAN
     <span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;javascripts/vendor/bootstrap/3.2.0/css/bootstrap.css&quot;</span> <span class="p">/&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;javascripts/vendor/jquery/1.7.1/jquery.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;javascripts/vendor/bootstrap/3.2.0/js/bootstrap.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
             <span class="p">#</span><span class="nn">results</span> <span class="p">{</span>
                     <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
@@ -461,10 +474,10 @@
 
 <ul>
 <li>
-<p>Abrimos el archivo ckan.html en el navegador.</p>
+<p>Abrimos el archivo <em>ckan.html</em> en el navegador.</p>
 </li>
 <li>
-<p>Añadimos dentro del tag <em>body</em> la maquetación HTML</p>
+<p>Añadimos dentro del tag  <code>&lt;body&gt;</code> la maquetación HTML</p>
 </li>
 </ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -501,18 +514,20 @@
 32
 33
 34
-35</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span><span class="p">&gt;</span>
+35
+36</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Resource Search example <span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span> Package Search <span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">a</span> <span class="na">target</span><span class="o">=</span><span class="s">&quot;_blank&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://docs.ckan.org/en/latest/api/&quot;</span><span class="p">&gt;</span>http://docs.ckan.org/en/latest/api/<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">form</span><span class="p">&gt;</span>
+     <span class="p">&lt;</span><span class="nt">form</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;_form&quot;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group&quot;</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;url_ckan&quot;</span><span class="p">&gt;</span>Url:<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
 
       <span class="p">&lt;</span><span class="nt">select</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;url_ckan&quot;</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;http://demo.ckan.org/api/3/action/resource_search?&quot;</span><span class="p">&gt;</span>ckan.org<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">option</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;http://old.datahub.io/api/3/action/resource_search?&quot;</span><span class="p">&gt;</span>old.datahub.io<span class="p">&lt;/</span><span class="nt">option</span><span class="p">&gt;</span>
+                <span class="c">&lt;!-- añadimos BCN opendata --&gt;</span>
       <span class="p">&lt;/</span><span class="nt">select</span><span class="p">&gt;</span>
     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;form-group&quot;</span><span class="p">&gt;</span>
@@ -541,10 +556,10 @@
 
 <ul>
 <li>
-<p>Abrimos el archivo ckan.html en el navegador.</p>
+<p>Abrimos el archivo <em>ckan.html</em> en el navegador.</p>
 </li>
 <li>
-<p>Añadimos justo encima de tag <em>body</em> el código en JavaScript.::</p>
+<p>Añadimos just encima del tag <code>&lt;/head&gt;</code> el siguiente código javascript</p>
 </li>
 </ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -591,12 +606,31 @@
 42
 43
 44
-45</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
-  <span class="nx">$</span><span class="p">.</span><span class="nx">ajaxSetup</span><span class="p">({</span>
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajaxSetup</span><span class="p">({</span>
     <span class="nx">cache</span><span class="o">:</span> <span class="kc">true</span>
   <span class="p">});</span>
   <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
     <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#bt_send&#39;</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="nx">sendRequest</span><span class="p">();</span>
+    <span class="p">});</span>
+
+    <span class="nx">$</span><span class="p">(</span> <span class="s2">&quot;#_form&quot;</span> <span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span> <span class="nx">event</span> <span class="p">)</span> <span class="p">{</span>
+      <span class="nx">sendRequest</span><span class="p">();</span>
+      <span class="nx">event</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>
+    <span class="p">});</span>
+
+
+    <span class="kd">function</span> <span class="nx">sendRequest</span><span class="p">(){</span>
       <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
         <span class="nx">rows</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#num_results_ckan&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">(),</span>
         <span class="nx">query</span><span class="o">:</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#text_filter_ckan&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span>
@@ -631,8 +665,7 @@
 <span class="p">}</span>
 
 <span class="p">});</span>
-
-<span class="p">})</span>
+    <span class="p">}</span>
 
 <span class="p">});</span>
 <span class="o">&lt;</span><span class="err">/script&gt;</span>
@@ -640,27 +673,30 @@
 </td></tr></table>
 
 <ul>
-<li>Abrimos pàgina ckan.html y lanzamos búsquedas</li>
+<li>Abrimos pàgina <em>ckan.html</em> y lanzamos búsquedas</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><strong>Ejercicio 1</strong>: Añadir una o más URLs de otros portales de CKAN</p>
+<p><strong>Ejercicio 1</strong>: Añadir una o más URLs de otros portales de CKAN, por ejemplo OpenDataBCN</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>Ejercicio 2</strong>: ¿Cómo haríamos para qué en los resultados apareciera la fecha de creación del dato?</p>
 </div>
-<p>Ejemplos API SOCRATA</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Ejercicio 3</strong>: Descargamos CSV accidentes</p>
+</div>
+<h2 id="ejemplos-api-socrata">Ejemplos API SOCRATA</h2>
 <p>El API de Socrata <a href="https://dev.socrata.com">https://dev.socrata.com</a> no ofrece diferetes niveles y métodos para poder buscar y filtra datasets.</p>
 <p>En este primer ejemplo utilizaremos la <strong>Discovery API</strong> <a href="https://socratadiscovery.docs.apiary.io/">https://socratadiscovery.docs.apiary.io/</a> para buscar datasets en cualquier portal de Socrata</p>
-<p>Descomprimiremos (ya hecho en ejercicio CKAN) el archivo <strong>utilizacion-servicio-opendata.zip</strong> en nuestro espacio de trabajo.</p>
 <p>Creación de un buscador</p>
 <ul>
 <li>
-<p>Dentro del directorio <strong>utilizacion-servicio-opendata</strong> creamos un archivo con el nombre de <strong>socrata.html</strong>.</p>
+<p>Creamos un archivo con el nombre de <strong>socrata.html</strong>.</p>
 </li>
 <li>
-<p>Abrimos el archivo socrata.html con un editor de texto y copiamos el siguiente código.::</p>
+<p>Abrimos el archivo <em>socrata.html</em> con un editor de texto y copiamos el siguiente código.</p>
 </li>
 </ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -685,28 +721,34 @@
 20
 21
 22
-23</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
+23
+24
+25
+26</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="cp">&lt;!DOCTYPE html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>
-Basic sample API Discovery SOCRATA
-<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;javascripts/vendor/bootstrap/3.2.0/css/bootstrap.css&quot;</span> <span class="p">/&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;javascripts/vendor/jquery/1.7.1/jquery.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;javascripts/vendor/bootstrap/3.2.0/js/bootstrap.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 
-<span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
-<span class="p">#</span><span class="nn">results</span> <span class="p">{</span>
-  <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
-  <span class="k">background-color</span><span class="p">:</span> <span class="mh">#f2f2f2</span><span class="p">;</span>
-  <span class="k">margin</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>
+        Basic sample API Discovery SOCRATA
+    <span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+    <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
+        <span class="p">#</span><span class="nn">results</span> <span class="p">{</span>
+            <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+            <span class="k">background-color</span><span class="p">:</span> <span class="mh">#f2f2f2</span><span class="p">;</span>
+            <span class="k">margin</span><span class="p">:</span> <span class="mi">5</span><span class="kt">px</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+
 <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
 
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+
 <span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </pre></div>
 </td></tr></table>
@@ -716,7 +758,7 @@ Basic sample API Discovery SOCRATA
 <p>Abrimos el archivo socrata.html en el navegador.</p>
 </li>
 <li>
-<p>Añadimos dentro del tag <strong>body</strong> la maquetación HTML.::</p>
+<p>Añadimos dentro del tag * <code>&lt;body&gt;</code>* la maquetación HTML.</p>
 </li>
 </ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -808,7 +850,7 @@ Basic sample API Discovery SOCRATA
 <p>Abrimos el archivo <strong>socrata.html</strong> en el navegador.</p>
 </li>
 <li>
-<p>Añadimos justo encima de tag <strong>/body</strong> el código en JavaScript.::</p>
+<p>Añadimos just encima del tag <code>&lt;/head&gt;</code> el siguiente código javascript</p>
 </li>
 </ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -916,20 +958,19 @@ Basic sample API Discovery SOCRATA
 </td></tr></table>
 
 <ul>
-<li>
-<p>Abrimos pàgina socrata.html y lanzamos búsquedas</p>
-</li>
-<li>
-<p><strong>Ejercicio 1</strong>: ¿Cómo filtraríamos para qué sólo enseñara "assets" de tipo mapa?</p>
-</li>
+<li>Abrimos pàgina socrata.html y lanzamos búsquedas</li>
 </ul>
-<p>Creación de un mapa para ver resultados de Socrata</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Ejercicio 1</strong>: ¿Cómo filtraríamos para qué sólo enseñara "assets" de tipo "map", <strong>only:map</strong>?</p>
+</div>
+<h1 id="creacion-de-un-mapa-para-ver-resultados-de-socrata">Creación de un mapa para ver resultados de Socrata</h1>
 <ul>
 <li>
-<p>Dentro del directorio <strong>utilizacion-servicio-opendata</strong> creamos un archivo con el nombre de <strong>socrata_mapa.html</strong>.</p>
+<p>Creamos un archivo con el nombre de <strong>socrata_mapa.html</strong>.</p>
 </li>
 <li>
-<p>Abrimos el archivo socrata_mapa.html con un editor de texto y copiamos el siguiente código.::</p>
+<p>Abrimos el archivo socrata_mapa.html con un editor de texto y copiamos el siguiente código.</p>
 </li>
 </ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -965,14 +1006,14 @@ Basic sample API Discovery SOCRATA
     <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>
         Basic Leaflet Map sample API Discovery SOCRATA
     <span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;javascripts/vendor/bootstrap/3.2.0/css/bootstrap.css&quot;</span> <span class="p">/&gt;</span>
-    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;javascripts/vendor/leaflet/0.7.7/leaflet.css&quot;</span> <span class="p">/&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;javascripts/vendor/jquery/1.7.1/jquery.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;javascripts/vendor/bootstrap/3.2.0/js/bootstrap.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;javascripts/vendor/leaflet/0.7.7/leaflet.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;javascripts/vendor/leaflet/0.7.7/leaflet.ajax.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;javascripts/vendor/leaflet/0.7.7/spin.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;javascripts/vendor/leaflet/0.7.7/leaflet.spin.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.css&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://code.jquery.com/jquery-3.3.1.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/leaflet.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdnjs.cloudflare.com/ajax/libs/Leaflet.Spin/1.1.0/leaflet.spin.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span>
         <span class="p">#</span><span class="nn">results</span> <span class="p">{</span>
             <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
@@ -989,12 +1030,7 @@ Basic sample API Discovery SOCRATA
 </td></tr></table>
 
 <ul>
-<li>
-<p>Abrimos el archivo socrata_mapa.html en el navegador.</p>
-</li>
-<li>
-<p>Añadimos dentro del tag <strong>body</strong> la maquetación HTML.::</p>
-</li>
+<li>Añadimos dentro del tag  <code>&lt;body&gt;</code> la maquetación HTML</li>
 </ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -1108,10 +1144,10 @@ US API Discovery
 
 <ul>
 <li>
-<p>Abrimos el archivo socrata_mapa.html en el navegador.</p>
+<p>Abrimos el archivo <em>socrata_mapa.html</em> en el navegador.</p>
 </li>
 <li>
-<p>Añadimos justo encima de tag <strong>body</strong> el código en JavaScript.::</p>
+<p>Añadimos just encima del tag <code>&lt;/head&gt;</code> el siguiente código javascript</p>
 </li>
 </ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
@@ -1548,6 +1584,10 @@ US API Discovery
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><strong>Ejercicio 2</strong>: ¿Cambiamos colores y estilos de los puntos del mapa?</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip<p>Ejemplos creados <a href="/files/utilizacion-servicio-opendata/utilizacion-servicio-opendata.zip">downloads/utilizacion-servicio-opendata.zip</a> en nuestro espacio de trabajo.</p>
+</p>
 </div>
 <p>Referencias</p>
 <p><a href="http://docs.ckan.org/en/latest/api/">http://docs.ckan.org/en/latest/api/</a>
