@@ -13,6 +13,7 @@ markdown_extensions:
   - admonition
   - pymdownx.magiclink
   - pymdownx.superfences
+  - footnotes
 repo_url: "https://github.com/gss-mtig/gss-mtig-18-19"
 
 nav:
@@ -21,6 +22,10 @@ nav:
 - 2. API servicios Open data (CKAN y SOCRATA): 2_conceptos_y_servicios_open_data.md
 - 3. Conceptos Vector Tiles: 3_conceptos_vector_tiles.md
 - 4. Visualización con Kepler.gl: 4_visualizacion_kepler.md
+- 5. Herramientas de visualización de datos: 5_herramientas_visualizacion_datos.md
+- 6. Conceptos básicos de Geoservicios: 6_conceptos_geoservicios.md
+- 7. Consideraciones sobre servicios Open data: 7_consideraciones_servicios_opendata.md
+- 8. Ejemplo servicio bicing Barcelona: 8_ejemplo_servicio_bicing_bcn.md
 
 plugins:
     - search
