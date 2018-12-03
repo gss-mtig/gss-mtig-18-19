@@ -3,15 +3,17 @@
 Máster en GeoInformación MTIG 2018-2019.
 Temario:
 
-# [https://sfggeogis.github.io/GSS-mtig-18-19/](https://sfggeogis.github.io/GSS-mtig-18-19/)
+# [https://gss-mtig.github.io/gss-mtig-18-19/](https://gss-mtig.github.io/gss-mtig-18-19/)
 
-* Introducción a las Smart Cities
-* Conceptos sensores
-* Conceptos y servicios Open data
-* Conceptos Vector Tiles
-* Visualización con Kepler.gl
+* [Introducción a las Smart Cities](https://gss-mtig.github.io/gss-mtig-18-19/1_introduccion_a_las_smart_cities/)
+    * Conceptos Smart Cities
+    * Conceptos Open Data
+    * Conceptos sensores
+    * Tecnologías OpenData
 
-
+* [API servicios Open data (CKAN y SOCRATA)](https://gss-mtig.github.io/gss-mtig-18-19/2_conceptos_y_servicios_open_data/)
+* [Conceptos Vector-Tiles](https://gss-mtig.github.io/gss-mtig-18-19/3_conceptos_vector_tiles/)
+* [Visualización con Kepler.gl](https://gss-mtig.github.io/gss-mtig-18-19/4_visualizacion_kepler/)
 * Herramientas de visualización de datos
 * Conceptos básicos de Geoservicios
 * Servicios realtime Open data
