@@ -30,6 +30,8 @@ nav:
 - 10. Consideraciones sobre servicios de Sensores: 10_consideraciones_servicios_realtime_sensores.md
 - 11. Ejemplo sensores port Barcelona: 11_ejemplo_sensores_port_bcn.md
 - 12. Ejemplo Sentilo ACA: 12_ejemplo_sentilo_aca.md
+- 13. Geoservicios realtime: 13_geoservicios_realtime.md
+- 14. Herramientas de visualización geoservicios: 14_herramientas_visualizacion_geoservicios.md
 
 plugins:
     - search
