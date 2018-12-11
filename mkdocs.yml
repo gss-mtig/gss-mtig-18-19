@@ -33,6 +33,7 @@ nav:
 - 13. Geoservicios realtime: 13_geoservicios_realtime.md
 - 14. Herramientas de visualización geoservicios: 14_herramientas_visualizacion_geoservicios.md
 - 15. Ejemplo Mobility: 15_ejemplo_mobility.md
+- 16. Ejemplo servicio realtime para compartir la ubicación: 16_ejemplo_geoservicio_realtime.md
 
 plugins:
     - search

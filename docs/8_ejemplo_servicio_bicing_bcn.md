@@ -145,7 +145,7 @@ Para ver estos datos sobre un mapa crearemos un visor utilizando Leaflet. [^2]
 node -v
 ```
 
-- Navegar hasta nuestra carpeta *visor-bicing* y escribir: ::
+- Navegar hasta nuestra carpeta *visor-bicing* y escribir
 
 ```bash
 npm init
@@ -192,7 +192,7 @@ app.all("/bicing/*", function(req, res) {
 app.listen(3000);
 ```
 
-- Probar que nuestro proxy está funcionando, escribiendo: ::
+- Probar que nuestro proxy está funcionando, escribiendo:
 
 ```bash
 node app.js
