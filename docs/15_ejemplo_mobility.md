@@ -739,18 +739,18 @@ Algunos de los servicios que ofrecen el cálculo de Isócronas son: [Targomo](ht
 		});
 
 		function crearUrlIsochrona(latlng){
-            var lat = latlng.lat;
-            var lng = latlng.lng;
-            var url = 'https://api.openrouteservice.org/isochrones?';
-            var json = {
-                locations: lng + "," + lat,
-                range_type: "time",
+		var lat = latlng.lat;
+		var lng = latlng.lng;
+		var url = 'https://api.openrouteservice.org/isochrones?';
+		var json = {
+				locations: lng + "," + lat,
+				range_type: "time",
 				range: 1200,
 				interval: 300,
 				profile: "cycling-regular",
 				location_type: "start",
 				api_key: API_KEY_ORS
-            };
+		};
 			var params = Object.keys(json).map(function(k) {
 				return encodeURIComponent(k) + '=' + encodeURIComponent(json[k])
 			}).join('&')
@@ -764,30 +764,400 @@ Algunos de los servicios que ofrecen el cálculo de Isócronas son: [Targomo](ht
 
 - Recargar el mapa y hacer click para confirmar que los polígonos se pintan de diferentes colores.
 
+!!! question
+		En la función de **crearUrlIsochrona** cambiar el modo de transporte *profile* y el alcance *range*
+
+		En el siguiente enlace se pueden ver las diferentes opciones de la API https://openrouteservice.org/dev/#/api-docs/isochrones/get
+
 ## Agregar un buscador de direcciones y puntos de interés al mapa
 
-Para agregar un buscador utilizaremos el plugin de Leaflet *Leaflet.OpenCage.Search* [^4] desarrollado por OpenCage que permite de una forma fácil y rápida hacer llamadas al servicio de búsqueda de OpenCage Geocoder.
+Para agregar un buscador utilizaremos el plugin de Leaflet *Leaflet.OpenCage.Search* [^4] desarrollado por OpenCage que permite de una forma fácil y rápida hacer llamadas al servicio de búsqueda de OpenCage Geocoder. Para ello hay que obtener un API_KEY en la página de OpenCage [^5]
 
-- Cargar la librería en nuestra aplicación. Copiar lo siguiente justo despúes de la carga del plugin de leaflet.ajax ::
+- Cargar la librería en nuestra aplicación.
 
-		<script src="http://rawgit.com/opencagedata/leaflet-opencage-search/master/dist/js/L.Control.OpenCageSearch.dev.js"></script>
+```html hl_lines="10 27"
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Ejemplo Isócronas Mapzen</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/trafforddatalab/leaflet.reachability@v1.0.0/leaflet.reachability.css"/>
+	<link rel="stylesheet" href="http://rawgit.com/opencagedata/leaflet-opencage-search/master/dist/css/L.Control.OpenCageSearch.dev.css" />
+	<style>
+		#map {
+			height: 100%;
+			width: 100%;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
 
-#. Cargar el estilo del plugin. Escribir lo siguiente justo debajo de donde cargamos el estilo de Leaflet ::
+	<div id="map">
 
-		<link rel="stylesheet" href="http://rawgit.com/opencagedata/leaflet-opencage-search/master/dist/css/L.Control.OpenCageSearch.dev.css" />
+	</div>
 
-#. Agregar el control al mapa. Para utilizar el servicio de búsqueda también es necesario pasar nuestra API key. Agregar lo siguiente antes de la declaración de nuestra función *crearUrlIsochrona* : ::
+	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+	<script src="https://calvinmetcalf.github.io/leaflet-ajax/dist/leaflet.ajax.js"></script>
+	<script src="http://rawgit.com/opencagedata/leaflet-opencage-search/master/dist/js/L.Control.OpenCageSearch.dev.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/trafforddatalab/leaflet.reachability@v1.0.0/leaflet.reachability.js"></script>
+<!-- Include below if you don't have your own preferred AJAX function/method (see options below) -->
+<script src="https://cdn.jsdelivr.net/gh/trafforddatalab/leaflet.reachability@v1.0.0/simple_ajax_request.js"></script>
+
+	<script>
+		var API_KEY_ORS = '{TU_API_KEY}';
+
+		var map = L.map('map');
+
+		map.setView([41.3887, 2.1777], 13);  
+
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+		}).addTo(map);
+
+		// Initialise the reachability plugin
+        L.control.reachability({
+            // add settings/options here
+            apiKey: API_KEY_ORS
+        }).addTo(map);
+
+		var geojsonLayer = new L.GeoJSON.AJAX('',{
+            style: function(geoJsonFeature){
+				var color = "#0000FF";
+				switch (geoJsonFeature.properties.value) {
+				  case 300:
+					color = "#0000FF";
+					break;
+				  case 600:
+					color = "#00FF00";
+					break;
+				  case 900:
+					color = "#FF0000";
+					break;
+				  case 1200:
+					color = "#FF00FF";
+					break;
+				  default:
+					color = "#0000FF";
+					break;
+				}
+				return {color: color};
+            }
+        }).addTo(map);
+
+		map.on('click', function(e){
+            console.log(e);
+			var url = crearUrlIsochrona(e.latlng);
+			console.log(url);
+			geojsonLayer.refresh(url);
+		});
+
+		function crearUrlIsochrona(latlng){
+		var lat = latlng.lat;
+		var lng = latlng.lng;
+		var url = 'https://api.openrouteservice.org/isochrones?';
+		var json = {
+				locations: lng + "," + lat,
+				range_type: "time",
+				range: 1200,
+				interval: 300,
+				profile: "cycling-regular",
+				location_type: "start",
+				api_key: API_KEY_ORS
+		};
+			var params = Object.keys(json).map(function(k) {
+				return encodeURIComponent(k) + '=' + encodeURIComponent(json[k])
+			}).join('&')
+            url += params;
+            return url;
+        }
+	</script>
+</body>
+</html>
+```
+
+- Crear la variable para la API key
+
+```html hl_lines="34"
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Ejemplo Isócronas Mapzen</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/trafforddatalab/leaflet.reachability@v1.0.0/leaflet.reachability.css"/>
+	<link rel="stylesheet" href="http://rawgit.com/opencagedata/leaflet-opencage-search/master/dist/css/L.Control.OpenCageSearch.dev.css" />
+	<style>
+		#map {
+			height: 100%;
+			width: 100%;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="map">
+
+	</div>
+
+	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+	<script src="https://calvinmetcalf.github.io/leaflet-ajax/dist/leaflet.ajax.js"></script>
+	<script src="http://rawgit.com/opencagedata/leaflet-opencage-search/master/dist/js/L.Control.OpenCageSearch.dev.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/trafforddatalab/leaflet.reachability@v1.0.0/leaflet.reachability.js"></script>
+<!-- Include below if you don't have your own preferred AJAX function/method (see options below) -->
+<script src="https://cdn.jsdelivr.net/gh/trafforddatalab/leaflet.reachability@v1.0.0/simple_ajax_request.js"></script>
+
+	<script>
+		var API_KEY_ORS = '{TU_API_KEY}';
+		var API_KEY_OCG = '{TU_API_KEY_OPENCAGE}';
+
+		var map = L.map('map');
+
+		map.setView([41.3887, 2.1777], 13);  
+
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+		}).addTo(map);
+
+		// Initialise the reachability plugin
+        L.control.reachability({
+            // add settings/options here
+            apiKey: API_KEY_ORS
+        }).addTo(map);
+
+		var geojsonLayer = new L.GeoJSON.AJAX('',{
+            style: function(geoJsonFeature){
+				var color = "#0000FF";
+				switch (geoJsonFeature.properties.value) {
+				  case 300:
+					color = "#0000FF";
+					break;
+				  case 600:
+					color = "#00FF00";
+					break;
+				  case 900:
+					color = "#FF0000";
+					break;
+				  case 1200:
+					color = "#FF00FF";
+					break;
+				  default:
+					color = "#0000FF";
+					break;
+				}
+				return {color: color};
+            }
+        }).addTo(map);
+
+		map.on('click', function(e){
+            console.log(e);
+			var url = crearUrlIsochrona(e.latlng);
+			console.log(url);
+			geojsonLayer.refresh(url);
+		});
+
+		function crearUrlIsochrona(latlng){
+		var lat = latlng.lat;
+		var lng = latlng.lng;
+		var url = 'https://api.openrouteservice.org/isochrones?';
+		var json = {
+				locations: lng + "," + lat,
+				range_type: "time",
+				range: 1200,
+				interval: 300,
+				profile: "cycling-regular",
+				location_type: "start",
+				api_key: API_KEY_ORS
+		};
+			var params = Object.keys(json).map(function(k) {
+				return encodeURIComponent(k) + '=' + encodeURIComponent(json[k])
+			}).join('&')
+            url += params;
+            return url;
+        }
+	</script>
+</body>
+</html>
+```
+
+- Agregar el control al mapa. Para utilizar el servicio de búsqueda también es necesario pasar nuestra API key:
+
+```html hl_lines="50 51 52 53 54"
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Ejemplo Isócronas Mapzen</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/trafforddatalab/leaflet.reachability@v1.0.0/leaflet.reachability.css"/>
+	<link rel="stylesheet" href="http://rawgit.com/opencagedata/leaflet-opencage-search/master/dist/css/L.Control.OpenCageSearch.dev.css" />
+	<style>
+		#map {
+			height: 100%;
+			width: 100%;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="map">
+
+	</div>
+
+	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+	<script src="https://calvinmetcalf.github.io/leaflet-ajax/dist/leaflet.ajax.js"></script>
+	<script src="http://rawgit.com/opencagedata/leaflet-opencage-search/master/dist/js/L.Control.OpenCageSearch.dev.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/trafforddatalab/leaflet.reachability@v1.0.0/leaflet.reachability.js"></script>
+<!-- Include below if you don't have your own preferred AJAX function/method (see options below) -->
+<script src="https://cdn.jsdelivr.net/gh/trafforddatalab/leaflet.reachability@v1.0.0/simple_ajax_request.js"></script>
+
+	<script>
+		var API_KEY_ORS = '{TU_API_KEY}';
+		var API_KEY_OCG = '{TU_API_KEY_OPENCAGE}';
+
+		var map = L.map('map');
+
+		map.setView([41.3887, 2.1777], 13);  
+
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+		}).addTo(map);
+
+		// Initialise the reachability plugin
+    L.control.reachability({
+			// add settings/options here
+			apiKey: API_KEY_ORS
+		}).addTo(map);
 
 		var options_g = {
-			key: '{TU_API_KEY_OPENCAGE}',
+			key: API_KEY_OCG,
 			limit: 10
 		};
 		var geocoder = L.Control.openCageSearch(options_g).addTo(map);
 
-#. Recargar el mapa y comprobar que aparece el control.
+		var geojsonLayer = new L.GeoJSON.AJAX('',{
+            style: function(geoJsonFeature){
+				var color = "#0000FF";
+				switch (geoJsonFeature.properties.value) {
+				  case 300:
+					color = "#0000FF";
+					break;
+				  case 600:
+					color = "#00FF00";
+					break;
+				  case 900:
+					color = "#FF0000";
+					break;
+				  case 1200:
+					color = "#FF00FF";
+					break;
+				  default:
+					color = "#0000FF";
+					break;
+				}
+				return {color: color};
+            }
+        }).addTo(map);
 
-#. Calcular las isócronas al seleccionar un resultado de la búsqueda. Modificar la función *_geocodeResultSelected* del control geocoder ::
+		map.on('click', function(e){
+            console.log(e);
+			var url = crearUrlIsochrona(e.latlng);
+			console.log(url);
+			geojsonLayer.refresh(url);
+		});
 
+		function crearUrlIsochrona(latlng){
+		var lat = latlng.lat;
+		var lng = latlng.lng;
+		var url = 'https://api.openrouteservice.org/isochrones?';
+		var json = {
+				locations: lng + "," + lat,
+				range_type: "time",
+				range: 1200,
+				interval: 300,
+				profile: "cycling-regular",
+				location_type: "start",
+				api_key: API_KEY_ORS
+		};
+			var params = Object.keys(json).map(function(k) {
+				return encodeURIComponent(k) + '=' + encodeURIComponent(json[k])
+			}).join('&')
+            url += params;
+            return url;
+        }
+	</script>
+</body>
+</html>
+```
+
+- Recargar el mapa y comprobar que aparece el control.
+
+- Calcular las isócronas al seleccionar un resultado de la búsqueda. Modificar la función *_geocodeResultSelected* del control geocoder
+
+```html hl_lines="55 56 57 58 59 60"
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Ejemplo Isócronas Mapzen</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/trafforddatalab/leaflet.reachability@v1.0.0/leaflet.reachability.css"/>
+	<link rel="stylesheet" href="http://rawgit.com/opencagedata/leaflet-opencage-search/master/dist/css/L.Control.OpenCageSearch.dev.css" />
+	<style>
+		#map {
+			height: 100%;
+			width: 100%;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="map">
+
+	</div>
+
+	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+	<script src="https://calvinmetcalf.github.io/leaflet-ajax/dist/leaflet.ajax.js"></script>
+	<script src="http://rawgit.com/opencagedata/leaflet-opencage-search/master/dist/js/L.Control.OpenCageSearch.dev.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/trafforddatalab/leaflet.reachability@v1.0.0/leaflet.reachability.js"></script>
+<!-- Include below if you don't have your own preferred AJAX function/method (see options below) -->
+<script src="https://cdn.jsdelivr.net/gh/trafforddatalab/leaflet.reachability@v1.0.0/simple_ajax_request.js"></script>
+
+	<script>
+		var API_KEY_ORS = '{TU_API_KEY}';
+		var API_KEY_OCG = '{TU_API_KEY_OPENCAGE}';
+
+		var map = L.map('map');
+
+		map.setView([41.3887, 2.1777], 13);  
+
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+		}).addTo(map);
+
+		// Initialise the reachability plugin
+    L.control.reachability({
+			// add settings/options here
+			apiKey: API_KEY_ORS
+		}).addTo(map);
+
+		var options_g = {
+			key: API_KEY_OCG,
+			limit: 10
+		};
+		var geocoder = L.Control.openCageSearch(options_g).addTo(map);
 		geocoder._geocodeResultSelected = function(result){
 			if (this.options.collapsed) {
 				this._collapse();
@@ -795,43 +1165,188 @@ Para agregar un buscador utilizaremos el plugin de Leaflet *Leaflet.OpenCage.Sea
 			console.log(result);
 		};
 
-#. Refrescar el mapa y abrir la consola de desarrolladores para comprobar que al seleccionar un resultado de la búsqueda aparece un objeto en la consola. Inspeccionar este objeto para ver que tiene una propiedad latlng que es lo que necesitamos para calcular las isócronas.
-#. Llamar a nuestra función *crearUrlIsochrona* en la función del evento select para generar la url, luego refrescar la capa de *geojsonLayer*. Esto ya lo hemos hecho cuando el usuario hace click en el mapa. Copiar lo siguiente en la función ::
+		var geojsonLayer = new L.GeoJSON.AJAX('',{
+            style: function(geoJsonFeature){
+				var color = "#0000FF";
+				switch (geoJsonFeature.properties.value) {
+				  case 300:
+					color = "#0000FF";
+					break;
+				  case 600:
+					color = "#00FF00";
+					break;
+				  case 900:
+					color = "#FF0000";
+					break;
+				  case 1200:
+					color = "#FF00FF";
+					break;
+				  default:
+					color = "#0000FF";
+					break;
+				}
+				return {color: color};
+            }
+        }).addTo(map);
 
-		var url = crearUrlIsochrona(result.center);
-		geojsonLayer.refresh(url);	
-		
-#. Refrescar la página y al seleccionar un resultado de búsqueda comprobar que calcula las isócronas desde ese punto.
+		map.on('click', function(e){
+            console.log(e);
+			var url = crearUrlIsochrona(e.latlng);
+			console.log(url);
+			geojsonLayer.refresh(url);
+		});
 
-		.. |isocrones| image:: _images/mapzen_isocrones.png
-		  :align: middle
-		  :alt: capturar mapa cálculo de isócronas.
-
-		+-------------+
-		| |isocrones| |
-		+-------------+
-
-
-Una alternativa al servicio de Isócronas de Mapzen
---------------------------------------------------
-
-Utilizaremos el servicio de la API de Iso4App [#]_ que también está basado en datos de OSM.
-
-#. Crear una función que tenga como parámetro una posición (coordenada lat lon) y genere una url de llamada al servicio de isócronas de Iso4App para que haga el cálculo en la coordenada indicada. Copiar lo siguiente al final de nuestro código: ::
-
-		function crearUrlIsochrona2(latlng){
-            var lat = latlng.lat;
-            var lng = latlng.lng;
-            var url = 'http://www.iso4app.net/rest/1.3/isoline.geojson?&type=isochrone';
-            url+= '&value='+60*15;
-            url+= '&lat='+lat+'&lng='+lng+'&mobility=pedestrian'
-            url+= '&licKey={TU_API_KEY_ISO4APP}';
+		function crearUrlIsochrona(latlng){
+		var lat = latlng.lat;
+		var lng = latlng.lng;
+		var url = 'https://api.openrouteservice.org/isochrones?';
+		var json = {
+				locations: lng + "," + lat,
+				range_type: "time",
+				range: 1200,
+				interval: 300,
+				profile: "cycling-regular",
+				location_type: "start",
+				api_key: API_KEY_ORS
+		};
+			var params = Object.keys(json).map(function(k) {
+				return encodeURIComponent(k) + '=' + encodeURIComponent(json[k])
+			}).join('&')
+            url += params;
             return url;
         }
+	</script>
+</body>
+</html>
+```
 
-#. Modificar la función que se llama al seleccionar un elemento del resultado de la búsqueda del geocodificador. En lugar de llamar a la función *crearUrlIsochrona* llamar a la nueva función **crearUrlIsochrona2**.
-#. Recargar la página y hacer click sobre el mapa para comprobar que se llama al servicio de Mapzen y se pintan dos isócronas.
-#. Hacer una búsqueda en el geocodificador y seleccionar un resultado para comprobar que se llama al servicio de Iso4App y se pinta una isócrona.  
+- Refrescar el mapa y abrir la consola de desarrolladores para comprobar que al seleccionar un resultado de la búsqueda aparece un objeto en la consola. Inspeccionar este objeto para ver que tiene una propiedad latlng que es lo que necesitamos para calcular las isócronas.
+
+- Llamar a nuestra función *crearUrlIsochrona* en la función del evento select para generar la url, luego refrescar la capa de *geojsonLayer*. Esto ya lo hemos hecho cuando el usuario hace click en el mapa. Copiar lo siguiente en la función
+
+```html hl_lines="60 61"
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Ejemplo Isócronas Mapzen</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/trafforddatalab/leaflet.reachability@v1.0.0/leaflet.reachability.css"/>
+	<link rel="stylesheet" href="http://rawgit.com/opencagedata/leaflet-opencage-search/master/dist/css/L.Control.OpenCageSearch.dev.css" />
+	<style>
+		#map {
+			height: 100%;
+			width: 100%;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+
+	<div id="map">
+
+	</div>
+
+	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+	<script src="https://calvinmetcalf.github.io/leaflet-ajax/dist/leaflet.ajax.js"></script>
+	<script src="http://rawgit.com/opencagedata/leaflet-opencage-search/master/dist/js/L.Control.OpenCageSearch.dev.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/trafforddatalab/leaflet.reachability@v1.0.0/leaflet.reachability.js"></script>
+<!-- Include below if you don't have your own preferred AJAX function/method (see options below) -->
+<script src="https://cdn.jsdelivr.net/gh/trafforddatalab/leaflet.reachability@v1.0.0/simple_ajax_request.js"></script>
+
+	<script>
+		var API_KEY_ORS = '{TU_API_KEY}';
+		var API_KEY_OCG = '{TU_API_KEY_OPENCAGE}';
+
+		var map = L.map('map');
+
+		map.setView([41.3887, 2.1777], 13);  
+
+		L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+			attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+		}).addTo(map);
+
+		// Initialise the reachability plugin
+    L.control.reachability({
+			// add settings/options here
+			apiKey: API_KEY_ORS
+		}).addTo(map);
+
+		var options_g = {
+			key: API_KEY_OCG,
+			limit: 10
+		};
+		var geocoder = L.Control.openCageSearch(options_g).addTo(map);
+		geocoder._geocodeResultSelected = function(result){
+			if (this.options.collapsed) {
+				this._collapse();
+			}
+			console.log(result);
+			var url = crearUrlIsochrona(result.center);
+			geojsonLayer.refresh(url);
+		};
+
+		var geojsonLayer = new L.GeoJSON.AJAX('',{
+            style: function(geoJsonFeature){
+				var color = "#0000FF";
+				switch (geoJsonFeature.properties.value) {
+				  case 300:
+					color = "#0000FF";
+					break;
+				  case 600:
+					color = "#00FF00";
+					break;
+				  case 900:
+					color = "#FF0000";
+					break;
+				  case 1200:
+					color = "#FF00FF";
+					break;
+				  default:
+					color = "#0000FF";
+					break;
+				}
+				return {color: color};
+            }
+        }).addTo(map);
+
+		map.on('click', function(e){
+            console.log(e);
+			var url = crearUrlIsochrona(e.latlng);
+			console.log(url);
+			geojsonLayer.refresh(url);
+		});
+
+		function crearUrlIsochrona(latlng){
+		var lat = latlng.lat;
+		var lng = latlng.lng;
+		var url = 'https://api.openrouteservice.org/isochrones?';
+		var json = {
+				locations: lng + "," + lat,
+				range_type: "time",
+				range: 1200,
+				interval: 300,
+				profile: "cycling-regular",
+				location_type: "start",
+				api_key: API_KEY_ORS
+		};
+			var params = Object.keys(json).map(function(k) {
+				return encodeURIComponent(k) + '=' + encodeURIComponent(json[k])
+			}).join('&')
+            url += params;
+            return url;
+        }
+	</script>
+</body>
+</html>
+```
+		
+- Refrescar la página y al seleccionar un resultado de búsqueda comprobar que calcula las isócronas desde ese punto.
+
+![ejemplo isócronas](img/mapa_isocronas.png)
+*ejemplo isócronas*
 
 ## Referencias
 
@@ -839,4 +1354,4 @@ Utilizaremos el servicio de la API de Iso4App [#]_ que también está basado en 
 [^2]: https://github.com/traffordDataLab/leaflet.reachability
 [^3]: https://github.com/calvinmetcalf/leaflet-ajax
 [^4]: https://github.com/OpenCageData/leaflet-opencage-search
-[^5]: https://www.iso4app.net/
+[^5]: https://opencagedata.com/
