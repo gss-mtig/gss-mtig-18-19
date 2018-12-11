@@ -32,6 +32,7 @@ nav:
 - 12. Ejemplo Sentilo ACA: 12_ejemplo_sentilo_aca.md
 - 13. Geoservicios realtime: 13_geoservicios_realtime.md
 - 14. Herramientas de visualización geoservicios: 14_herramientas_visualizacion_geoservicios.md
+- 15. Ejemplo Mobility: 15_ejemplo_mobility.md
 
 plugins:
     - search
