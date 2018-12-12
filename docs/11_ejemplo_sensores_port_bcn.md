@@ -16,7 +16,7 @@ Para crear un visor de mapas utilizaremos el widget de Mapa [^4] que está basad
 
 - Crear una carpeta con el nombre de *visor-port*.
 - Crear un archivo con el nombre de *index.html* dentro de la carpeta.
-- Abrir el archivo index.html con un editor de texto y copiar el siguiente código. ::
+- Abrir el archivo index.html con un editor de texto y copiar el siguiente código.
 
 ```html
 <!DOCTYPE html>
@@ -543,7 +543,7 @@ Para crear un visor de mapas utilizaremos el widget de Mapa [^4] que está basad
 </html>
 ```
 
-- Llamar a la nueva función **showTermometro** dentro de la función del *on_click*. Escribir luego del console.log ::
+- Llamar a la nueva función **showTermometro** dentro de la función del *on_click*. Escribir luego del console.log
 
 ```html hl_lines="51"
 <!DOCTYPE html>

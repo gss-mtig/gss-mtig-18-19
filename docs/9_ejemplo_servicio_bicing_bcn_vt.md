@@ -489,7 +489,7 @@ node app.js
 
 - Recargar la página y hacer click sobre alguna estación para ver su información en tiempo real.
 
-- Cambiar el tipo de cursor al pasar sobre una estación. Escribir después de donde definimos el onload ::
+- Cambiar el tipo de cursor al pasar sobre una estación. Escribir después de donde definimos el onload
 
 ```html hl_lines="100 101 102 103 104 105"
 <!DOCTYPE html>

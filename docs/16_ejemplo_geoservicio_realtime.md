@@ -147,7 +147,7 @@ http.listen(3000, function(){
 });
 ```
 
-- Probar que nuestro servidor está funcionando, escribiendo: ::
+- Probar que nuestro servidor está funcionando, escribiendo:
 
 ```bash
 node app.js

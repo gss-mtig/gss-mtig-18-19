@@ -141,13 +141,13 @@ Para crear un visor de mapas utilizaremos la librería de mapas Leaflet [^5].
 
 ## Creación del proxy
 
-- Instalar Node.js [^9]. Descargar la última versión LTS (en este momento es la 10.13.0 LTS) y lo instalaremos con las opciones por defecto. Abrir la consola para verificar que se ha instalado correctamente y escribir ::
+- Instalar Node.js [^9]. Descargar la última versión LTS (en este momento es la 10.13.0 LTS) y lo instalaremos con las opciones por defecto. Abrir la consola para verificar que se ha instalado correctamente y escribir
 
 ```bash
 node -v
 ```
 
-- Navegar hasta nuestra carpeta *visor-aca* y escribir: ::
+- Navegar hasta nuestra carpeta *visor-aca* y escribir:
 
 ```bash
 npm init
@@ -157,13 +157,13 @@ Con este comando estaremos creando el archivo *package.json*, el cual solicita v
 
 - Instalar las dependencias para crear nuestro servicio de proxy. En este caso utilizaremos Express [^10] como servidor web y el módulo http-proxy [^11].
 
-- Instalar el express y guardarlo en la lista de dependencias ::
+- Instalar el express y guardarlo en la lista de dependencias
 
 ```bash
 npm install express --save
 ```
 
-- Instalar el http-proxy y guardarlo en la lista de dependencias ::
+- Instalar el http-proxy y guardarlo en la lista de dependencias
 
 ```bash
 npm install http-proxy --save
