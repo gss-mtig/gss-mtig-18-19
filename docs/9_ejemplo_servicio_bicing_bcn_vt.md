@@ -354,8 +354,8 @@ node app.js
             ["to-number", ['get','slots']],
             0,
             5,
-            33,
-            15
+            15,
+            33
           ],
           "circle-color": [
             "interpolate",
@@ -440,8 +440,8 @@ node app.js
             ["to-number", ['get','slots']],
             0,
             5,
-            33,
-            15
+            15,
+            33
           ],
           "circle-color": [
             "interpolate",
@@ -548,8 +548,8 @@ node app.js
             ["to-number", ['get','slots']],
             0,
             5,
-            33,
-            15
+            15,
+            33
           ],
           "circle-color": [
             "interpolate",
@@ -606,6 +606,10 @@ node app.js
 
 ![mapa de servicio de bicing](img/mapa_bicing_vt.png)
 *mapa de servicio de bicing*
+
+!!! question "Ejercicio"
+	Cambiar el estilo de los puntos de las estaciones. Cambiar los rangos del tamaño del punto y cambiar el rango de colores.
+
 
 ## Referencias
 

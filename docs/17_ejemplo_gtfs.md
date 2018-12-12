@@ -717,6 +717,14 @@ function leerZip(archivo){
 ![ejemplo gtfs](img/mapa_gtfs.png)
 *ejemplo gtfs*
 
+!!! question "Ejercicios"
+	1. Mostrar un popup con información de la propiedad *shape_id* al hacer click en la capa de líneas 
+	
+	2. Cargar datos del gtfs de FGC https://www.fgc.cat/es/opendata/  
+	En el siguiente enlace está el fichero de gtfs https://www.fgc.cat/wp-content/uploads/2018/02/google_transit.zip
+
+	3. Centrar el mapa en Barcelona
+
 ## Referencias
 
 [^1]: https://developers.google.com/transit/gtfs/?hl=es-419

@@ -620,6 +620,12 @@ Para crear un visor de mapas utilizaremos el widget de Mapa [^4] que está basad
 ![mapa de sensores del port de barcelona](img/sensores_port_bcn.png)
 *mapa de sensores del port de barcelona*
 
+!!! question "Ejercicio"
+	Crear una función para mostrar el widget de **manómetro** en lugar del termómetro. Llamar esta nueva función al hacer click sobre un sensor.
+
+	En el siguiente enlace se pueden ver las diferentes opciones http://sensors.portdebarcelona.cat/?lang=es#gauge
+
+
 ## Referencias
 
 [^1]: http://sensors.portdebarcelona.cat/?lang=es

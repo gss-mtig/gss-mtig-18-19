@@ -764,11 +764,6 @@ Algunos de los servicios que ofrecen el cálculo de Isócronas son: [Targomo](ht
 
 - Recargar el mapa y hacer click para confirmar que los polígonos se pintan de diferentes colores.
 
-!!! question
-		En la función de **crearUrlIsochrona** cambiar el modo de transporte *profile* y el alcance *range*
-
-		En el siguiente enlace se pueden ver las diferentes opciones de la API https://openrouteservice.org/dev/#/api-docs/isochrones/get
-
 ## Agregar un buscador de direcciones y puntos de interés al mapa
 
 Para agregar un buscador utilizaremos el plugin de Leaflet *Leaflet.OpenCage.Search* [^4] desarrollado por OpenCage que permite de una forma fácil y rápida hacer llamadas al servicio de búsqueda de OpenCage Geocoder. Para ello hay que obtener un API_KEY en la página de OpenCage [^5]
@@ -1347,6 +1342,12 @@ Para agregar un buscador utilizaremos el plugin de Leaflet *Leaflet.OpenCage.Sea
 
 ![ejemplo isócronas](img/mapa_isocronas.png)
 *ejemplo isócronas*
+
+!!! question "Ejercicio"
+	En la función de **crearUrlIsochrona** cambiar el modo de transporte *profile* y el alcance *range*
+
+	En el siguiente enlace se pueden ver las diferentes opciones de la API https://openrouteservice.org/dev/#/api-docs/isochrones/get
+
 
 ## Referencias
 
