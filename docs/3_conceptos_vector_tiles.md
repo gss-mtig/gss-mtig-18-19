@@ -6,14 +6,64 @@ Una tesela vectorial (vector tiles) contiene datos vectoriales georreferenciados
 
  Cada conjunto de teselas vectoriales tiene su propio esquema. Un esquema consiste en nombres de capas, atributos, selección de elementos.
 
-![alt text](img/tile_pyramid_1.png "Pirámides")
+## Contexto
 
- >Para saber más...   [https://geoinquiets.github.io/taller-vt](https://geoinquiets.github.io/taller-vt)
+ En 2005 GoogleMaps introdujo una "nueva" forma de mostrar datos geográficos por la web, pregenerando el mapa por niveles de zoom y tiles (teselas) de 256x256 pixeles.
+
+También creó una nueva proyección basada en mercator, llamada pseude-mercator o [web mercator](https://en.wikipedia.org/wiki/Web_Mercator_projection), cuyo código EPSG es 3857
+
+
+![alt text](img/tile_pyramid_1.png "Pirámides")
+![alt text](img/zoom.png "Zoom")
+
+ Después de GoogleMaps, otros proveedores o plataformas cómo OpenStreetMap siguen esta misma forma de organizar la geoinformación.
+
+## Protocolos
+
+ Para cargar la imágenes se ulitza una llamada HTTP rest dónde se especifica;
+ 
+> https://.../.../z/x/y.format
+
+> Z= Nivel de zoom
+
+> X=coordenada X
+
+> Y=coordenada Y
+
+> Formato 
+
+>   Raster: Imágen png o JPEG
+
+>   Vector: (pbf o mvt)
+  
+ 
+
+![alt text](img/request.png "XyZ")
+
+## Protocolos
+
+Existen tres especificaciones para servir tiles
+
+* TMS (Tile Map Service): X Y coordenadas empiezan de debajo  izquierda (típico eje cartesiano de coordenadas)
+
+* WMTS (Web Map Tile Service): OGC estandard , corrdenadas empiezan de arriba izquierda.
+
+* ZXY o "slippy map": Igual que TMS pero la Y empieza por arriba izquierda
+
+![alt text](img/tms.png "XyZ")
+![alt text](img/xyz.png "XyZ")
+
+### Caracteristicas
 
 Las teselas vectoriales han sido utilizadas por el cliente Android de Google Maps desde diciembre de 2010 y en el cliente de escritorio desde 2013. Las teselas vectoriales para renderizar los datos de OpenStreetMap se propusieron por primera vez en marzo de 2013 y están soportadas por Mapnik, el renderizador de datos de OpenStreetMap más utilizado. 
 Mapbox, proveedor comercial de herramientas de cartografía personalizada y de hosting, es el máxini impulsor de esta tecnologia y ha centrado su herramienta de cartografía, Mapbox Studio, en torno a las teselas vectoriales.
 
-En comparación con un mapa rasterizado en mosaico, la transferencia de datos también se reduce en gran medida, ya que los datos vectoriales suelen ser mucho más pequeños que un mapa de bits renderizado. Además, el estilo se puede aplicar más tarde en el proceso, o incluso en el propio navegador, lo que permite una mayor flexibilidad en la forma en que se presentan los datos. También es fácil proporcionar interactividad con las características de los mapas, ya que su representación vectorial ya existe en el cliente.Otra ventaja es que se requiere una menor potencia de procesamiento del servidor centralizado, ya que la rasterización puede realizarse directamente en el cliente.
+
+ * Cada tile es un contenedor de datos vectores y atributos
+ * Los Tiles no tienen estilo, el estilo se aplica en cliente
+ * Soporta rotación y orientación
+ * Soporta extrusión y 3D
+
 
 
 
