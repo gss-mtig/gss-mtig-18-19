@@ -8,7 +8,7 @@
 
 ## Ejemplo de buenas prácticas
 
-El servicio de datos sobre embalses ofrecidos por la ACA (Agencia Catalana del Agua) http://aca-web.gencat.cat/aca/appmanager/aca/aca?_nfpb=true&_pageLabel=P56600137761453129970599. Es un ejemplo de buenas prácticas porque está bien documentado y contiene ejemplos. El acceso es libre y gratuito y tiene salida en un mapa para los ususarios que no sean desarrolladores.
+El servicio de datos sobre embalses ofrecidos por la ACA (Agencia Catalana del Agua)http://aca.gencat.cat/ca/laigua/consulta-de-dades/dades-obertes/. Es un ejemplo de buenas prácticas porque está bien documentado y contiene ejemplos. El acceso es libre y gratuito y tiene salida en un mapa para los ususarios que no sean desarrolladores.
 
 Ejemplo de salida http://aca-web.gencat.cat/sdim2/apirest/catalog?componentType=embassament
 
@@ -16,7 +16,7 @@ Si bien el formato de salida es un JSON donde tiene una propiedad *location* no 
 
 ## Ejemplo de "malas" prácticas
 
-El servicio de la DIBA https://www.diba.cat/es/web/smartregion/obtenir-acces-a-sentilo-diba ya que para acceder a los servicios es necesaria una API Key y para obtenerla hay que enviar un email con nuestros datos y el motivo de uso. El simple hecho de tener que registrarse ya es una barrera.
+El servicio de la DIBA https://www.diba.cat/es/web/smartregion/premis-apps-iot-for-citizens/obtenir-acces-a-sentilo-diba ya que para acceder a los servicios es necesaria una API Key y para obtenerla hay que enviar un email con nuestros datos y el motivo de uso. El simple hecho de tener que registrarse ya es una barrera.
 
 El acceso a la aplicación http://sentilo.diba.cat/sentilo-catalog-web/ no es fácil de encontrar y no hay ninguna documentación.
 

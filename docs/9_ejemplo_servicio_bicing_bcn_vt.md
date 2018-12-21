@@ -102,6 +102,7 @@ Al ejecutar estos comandos veremos que se crea una carpeta llamada *node_modules
 ```js
 var express  = require('express');
 var app      = express();
+var axios = require('axios');
 var serverBicing = 'http://wservice.viabicing.cat/v2/stations';
 
 app.use(express.static('public'));
