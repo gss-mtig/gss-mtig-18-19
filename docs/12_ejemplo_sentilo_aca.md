@@ -705,7 +705,7 @@ app.listen(3000);
         fetch(url)
         .then(function(response) {
           response.json().then(function(data){
-            popUp(l, data);
+            console.log(data);
           });
         })
         .catch(function(myJson) {
@@ -795,7 +795,7 @@ app.listen(3000);
         fetch(url)
         .then(function(response) {
           response.json().then(function(data){
-            popUp(l, data);
+            console.log(data);
           });
         })
         .catch(function(myJson) {
