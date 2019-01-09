@@ -1911,7 +1911,7 @@
 </span><span class="hll">        <span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
 </span><span class="hll">        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
 </span><span class="hll">          <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
-</span><span class="hll">            <span class="nx">popUp</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+</span><span class="hll">            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
 </span><span class="hll">          <span class="p">});</span>
 </span><span class="hll">        <span class="p">})</span>
 </span><span class="hll">        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">myJson</span><span class="p">)</span> <span class="p">{</span>
@@ -2100,7 +2100,7 @@
         <span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
           <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">){</span>
-            <span class="nx">popUp</span><span class="p">(</span><span class="nx">l</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
           <span class="p">});</span>
         <span class="p">})</span>
         <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">myJson</span><span class="p">)</span> <span class="p">{</span>
