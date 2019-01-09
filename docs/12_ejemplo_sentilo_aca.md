@@ -559,7 +559,7 @@ node app.js
 
     Por ejemplo:
 
-    http://aca-web.gencat.cat/sentilo-catalog-web/component/map/EMBASSAMENT-EST.L25075-72-00003/lastOb/
+    http://aca-web.gencat.cat/sentilo-catalog-web/component/map/EMBASSAMENT-EST.082687-001/lastOb/
 
     Como estamos llamando una url que está fuera de nuestro dominio tenemos el mismo problema de CORS.
 
@@ -628,7 +628,7 @@ app.listen(3000);
 
 - Reiniciar nuestro servidor de node, ir a la consola y presionar Crtl+c. Escribir node app.js.
 
-- Abrir la url http://localhost:3000/acalast/L25075-72-00003 en el navegador para comprobar que el proxy está funcionando correctamente.
+- Abrir la url http://localhost:3000/acalast/082687-001 en el navegador para comprobar que el proxy está funcionando correctamente.
 
 - Modificar la función que se llama al hacer click sobre un elemento del mapa para que llame a nuestro proxy. Esta función ejecutará una llamada ajax al proxy. Modificar la función *eachFeature* con el siguiente código
 
